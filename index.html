@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knot Codz - Tech Vibes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Disco Background Animation */
+        .disco-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff0066, #00ff66, #6600ff, #ff6600, #00ffff, #ff0066);
+            background-size: 400% 400%;
+            animation: discoGradient 2s ease infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes discoGradient {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Disco Balls */
+        .disco-ball {
+            position: absolute;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #ff0066, #00ff66, #6600ff, #ff6600, #00ffff, #ff0066);
+            animation: spin 3s linear infinite, pulse 2s ease-in-out infinite;
+        }
+
+        .disco-ball-1 {
+            width: 150px;
+            height: 150px;
+            top: 10%;
+            left: 15%;
+            animation-duration: 4s, 3s;
+        }
+
+        .disco-ball-2 {
+            width: 100px;
+            height: 100px;
+            top: 70%;
+            right: 20%;
+            animation-duration: 5s, 2.5s;
+        }
+
+        .disco-ball-3 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            right: 10%;
+            animation-duration: 3s, 4s;
+        }
+
+        .disco-ball-4 {
+            width: 120px;
+            height: 120px;
+            bottom: 15%;
+            left: 25%;
+            animation-duration: 6s, 2s;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            to { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: float 8s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Laser Beams */
+        .laser {
+            position: absolute;
+            width: 2px;
+            height: 100vh;
+            background: linear-gradient(to bottom, transparent, #ff0066, transparent);
+            animation: laser-sweep 4s linear infinite;
+            opacity: 0.7;
+        }
+
+        .laser-1 { left: 20%; animation-delay: 0s; }
+        .laser-2 { left: 40%; animation-delay: 1s; background: linear-gradient(to bottom, transparent, #00ff66, transparent); }
+        .laser-3 { left: 60%; animation-delay: 2s; background: linear-gradient(to bottom, transparent, #6600ff, transparent); }
+        .laser-4 { left: 80%; animation-delay: 3s; background: linear-gradient(to bottom, transparent, #00ffff, transparent); }
+
+        @keyframes laser-sweep {
+            0%, 100% { opacity: 0; transform: scaleX(1); }
+            25% { opacity: 0.8; transform: scaleX(3); }
+            50% { opacity: 1; transform: scaleX(1); }
+            75% { opacity: 0.8; transform: scaleX(2); }
+        }
+
+        /* Main Content Container */
+        .content {
+            position: relative;
+            z-index: 100;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 30px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: contentFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes contentFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.02); }
+        }
+
+        /* Animated Text */
+        .main-text {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff0066, #00ff66, #6600ff, #ff6600, #00ffff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 2s ease-in-out infinite, textShift 3s linear infinite;
+            text-shadow: 0 0 30px rgba(255, 0, 102, 0.8);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        @keyframes textShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 30px rgba(255, 0, 102, 0.8), 0 0 60px rgba(0, 255, 102, 0.6); }
+            50% { text-shadow: 0 0 40px rgba(102, 0, 255, 0.9), 0 0 80px rgba(255, 102, 0, 0.7); }
+        }
+
+        .sub-text {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            animation: subTextPulse 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        @keyframes subTextPulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff0066, #00ff66, #6600ff, #ff6600);
+            background-size: 300% 300%;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            animation: buttonPulse 2s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(255, 0, 102, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 20px 50px rgba(255, 0, 102, 0.6);
+            background-size: 100% 100%;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Sparkle Effects */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkle 2s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-text {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+            
+            .sub-text {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .disco-ball {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-text {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .sub-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Additional Visual Effects */
+        .strobe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: strobe 0.1s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes strobe {
+            0%, 90% { opacity: 0; }
+            95% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Disco Background -->
+    <div class="disco-bg"></div>
+    
+    <!-- Strobe Effect -->
+    <div class="strobe"></div>
+    
+    <!-- Laser Beams -->
+    <div class="laser laser-1"></div>
+    <div class="laser laser-2"></div>
+    <div class="laser laser-3"></div>
+    <div class="laser laser-4"></div>
+    
+    <!-- Disco Balls -->
+    <div class="disco-ball disco-ball-1"></div>
+    <div class="disco-ball disco-ball-2"></div>
+    <div class="disco-ball disco-ball-3"></div>
+    <div class="disco-ball disco-ball-4"></div>
+    
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="main-text">Follow Knot Codz</h1>
+        <p class="sub-text">For more Tech related Tips</p>
+        <a href="#" class="cta-button">Dm us for Projects</a>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            particle.style.animationDuration = (Math.random() * 5 + 3) + 's';
+            
+            // Random colors for particles
+            const colors = ['#ff0066', '#00ff66', '#6600ff', '#ff6600', '#00ffff', '#fff'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+
+        // Create sparkles around the content
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            
+            const content = document.querySelector('.content');
+            const rect = content.getBoundingClientRect();
+            
+            sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+            sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Generate particles continuously
+        setInterval(createParticle, 300);
+        
+        // Generate sparkles continuously
+        setInterval(createSparkle, 800);
+
+        // Dynamic background color shifts
+        let hue = 0;
+        function shiftColors() {
+            hue += 2;
+            if (hue >= 360) hue = 0;
+            
+            document.documentElement.style.setProperty('--dynamic-hue', hue);
+        }
+        
+        setInterval(shiftColors, 100);
+
+        // Add click interaction to button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create explosion effect
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createSparkle();
+                }, i * 50);
+            }
+            
+            // Flash effect
+            document.body.style.background = '#fff';
+            setTimeout(() => {
+                document.body.style.background = '#000';
+            }, 100);
+        });
+
+        // Responsive disco ball hiding
+        function handleResize() {
+            const balls = document.querySelectorAll('.disco-ball');
+            if (window.innerWidth <= 768) {
+                balls.forEach(ball => ball.style.display = 'none');
+            } else {
+                balls.forEach(ball => ball.style.display = 'block');
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial check
+    </script>
+</body>
+</html>
